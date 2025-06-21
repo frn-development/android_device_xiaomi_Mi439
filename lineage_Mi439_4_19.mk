@@ -43,10 +43,18 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 # Gapps.
 TARGET_DISABLES_GMS := true
-WITH_GMS := false
+
+ # To include Gapps 
+WITH_GMS := true
+
 
 # Recognized ROM As.
 ROM_FOLDER := lineage
 
 # Boot animation resolution.
 TARGET_BOOT_ANIMATION_RES := 720
+#MATRIXX_BUILD_TYPE := Official
+MATRIXX_MAINTAINER := FARHAN
+MATRIXX_CHIPSET := SM438
+MATRIXX_BATTERY := 5000mah
+MATRIXX_DISPLAY := 720 x 1520
