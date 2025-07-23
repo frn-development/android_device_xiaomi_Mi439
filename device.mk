@@ -23,6 +23,9 @@ PRODUCT_PACKAGES += \
     xiaomi_olive_overlay \
     xiaomi_olive_overlay_Aperture \
     xiaomi_olive_overlay_SystemUI
+# Remove packages
+PRODUCT_PACKAGES += \
+    RemovePackages
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-haptics
