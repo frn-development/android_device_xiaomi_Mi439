@@ -9,8 +9,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_p.mk)
 
-# Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common Infinity X stuff.
+$(call inherit-product, vendor/infinity/config/common_full_phone.mk)
 
 # Kernel
 TARGET_KERNEL_VERSION := 4.19
@@ -20,14 +20,14 @@ $(call inherit-product, device/xiaomi/Mi439/device.mk)
 
 # Overlays
 PRODUCT_PACKAGES += \
-    xiaomi_pine_overlay_lineage \
-    xiaomi_olive_overlay_lineage
+    xiaomi_pine_overlay_infinity \
+    xiaomi_olive_overlay_infinity
 
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-infinity
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := Mi439_4_19
-PRODUCT_NAME := lineage_Mi439_4_19
+PRODUCT_NAME := infinity_Mi439_4_19
 BOARD_VENDOR := Xiaomi
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := SDM439
@@ -42,3 +42,12 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 # reserved without gapps
 TARGET_DISABLES_GMS := true
+
+# Boot animation resolution.
+TARGET_BOOT_ANIMATION_RES := 720
+
+
+# Extra Stuffs
+INFINITY_MAINTAINER := FARHAN_AFK(jisan)
+TARGET_BUILD_VIMUSIC := true
+USE_MOTO_CALCULATOR := true

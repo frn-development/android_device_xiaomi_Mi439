@@ -73,6 +73,28 @@ TARGET_SCREEN_DENSITY := 288
 TARGET_BOARD_FASTBOOT_INFO_FILE := $(DEVICE_PATH)/fastboot-info.txt
 
 # HIDL
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
+    $(COMMON_PATH)/framework_compatibility_matrix.xml \
+    vendor/infinity/config/device_framework_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := $(COMMON_PATH)/framework_manifest.xml
+DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest_k$(TARGET_KERNEL_VERSION).xml
+ifneq ($(TARGET_HAS_NO_CONSUMERIR),true)
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/configs/manifest/consumerir.xml
+endif
+ifneq ($(TARGET_HAS_NO_RADIO),true)
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/configs/manifest/radio.xml
+endif
+ifneq ($(TARGET_USES_DEVICE_SPECIFIC_GATEKEEPER),true)
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/configs/manifest/gatekeeper.xml
+endif
+ifneq ($(TARGET_USES_DEVICE_SPECIFIC_KEYMASTER),true)
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/configs/manifest/keymaster.xml
+endif
+ifeq ($(TARGET_USES_Q_DISPLAY_STACK),true)
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/configs/manifest/q-display-stack.xml
+endif
+DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/configs/manifest/gatekeeper.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 
@@ -142,6 +164,7 @@ endif
 TARGET_TAP_TO_WAKE_NODE := "/proc/sys/dev/dt2w"
 
 # Properties
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/Phoneinfo.prop
 TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
@@ -176,3 +199,4 @@ BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
 # Inherit from the proprietary version
 include vendor/xiaomi/Mi439/BoardConfigVendor.mk
+
